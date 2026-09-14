@@ -6,6 +6,14 @@ import streamlit as st
 
 # Page Configuration
 st.set_page_config(page_title='Meridukan', page_icon='store_logo.png', layout='wide')
+# PWA Manifest aur Custom Icon injector for Mobile/Desktop Install
+st.markdown(
+    """
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+""",
+    unsafe_allow_html=True,
+)
 
 # Files to save data permanently
 DATA_FILE = 'dukan_stock.csv'
