@@ -5,7 +5,7 @@ from PIL import Image
 import streamlit as st
 
 # Page Configuration
-st.set_page_config(page_title='Meridukan', page_icon='🛒', layout='wide')
+st.set_page_config(page_title='Meridukan', page_icon='store_logo.png', layout='wide')
 
 # Files to save data permanently
 DATA_FILE = 'dukan_stock.csv'
