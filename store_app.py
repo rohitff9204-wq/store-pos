@@ -4,8 +4,27 @@ import pandas as pd
 from PIL import Image
 import streamlit as st
 
-# Page Configuration
-st.set_page_config(page_title='Meridukan', page_icon='store_logo.png', layout='wide')
+st.set_page_config(
+    page_title='Meridukan', page_icon='store_logo.png', layout='wide'
+)
+
+# Custom PWA Manifest aur Icon Injector for Mobile/Desktop Install Prompt
+st.markdown(
+    """
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+    <script>
+        // Dynamically inject manifest link if missing
+        if (!document.querySelector('link[rel="manifest"]')) {
+            const link = document.createElement('link');
+            link.rel = 'manifest';
+            link.href = '/manifest.json';
+            document.head.appendChild(link);
+        }
+    </script>
+""",
+    unsafe_allow_html=True,
+)
 # PWA Manifest aur Custom Icon injector for Mobile/Desktop Install
 st.markdown(
     """
