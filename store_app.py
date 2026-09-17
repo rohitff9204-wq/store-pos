@@ -144,7 +144,7 @@ st.caption(f'Sanchalak (Owner): {owner_name} | Smart Management & POS System')
 # 1. BILLING & CART COUNTER (MANUAL & FLEXIBLE)
 # ==========================================
 if menu == '🧾 Cart & Billing Counter':
-  st.header('🧾 Grahak Ka Bill Banayein (Manual Entry)')
+  st.header('🧾 Grahak Bill Banayein (Manual Entry)')
 
   col1, col2 = st.columns(2)
 
@@ -152,9 +152,10 @@ if menu == '🧾 Cart & Billing Counter':
     st.subheader('Saman Jodein')
     
     # User khud naam aur quantity type karega
-    item_name = st.text_input('Saman ka Naam (Jaise: Atta, Tel, Chawal)')
-    item_qty = st.text_input('Wajan ya Quantity (Jaise: 1500gm, 1kg, 2 piece)')
-    item_price = st.number_input('Is saaman ka Price (₹ me)', min_value=0.0, step=1.0)
+    item_name = st.text_input('Grahak Name')
+    item_name = st.text_input('Saman ka Naam')
+    item_qty = st.text_input('Wajan ya Quantity')
+    item_price = st.number_input('Is saaman ka Price (₹)', min_value=0.0, step=1.0)
 
     if st.button('Cart Me Jodein'):
       if item_name and item_qty and item_price > 0:
@@ -240,20 +241,50 @@ if menu == '🧾 Cart & Billing Counter':
       st.info('Cart khali hai. Pehle saaman jodein.')
 
   # Show generated bill and Download button
-  if st.session_state.last_bill:
+if st.session_state.last_bill:
     st.markdown('---')
-    st.subheader('🖨️ Aapka Pukka Bill (Download ya Copy karein)')
+    st.subheader('🧾 Aapka Pukka Bill')
     
-    st.text_area('WhatsApp Par Bhejne ke liye copy karein:', st.session_state.last_bill, height=300)
+    # WhatsApp पर कॉपी करने के लिए टेक्स्ट एरिया
+    st.text_area('WhatsApp Par Bhejne ke liye copy karein:', st.session_state.last_bill, height=200)
     
-    # File name with date-time
-    file_name_str = f"Bill_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+    # --- टेक्स्ट को इमेज (फोटो) में बदलने का लॉजिक ---
+    from PIL import Image, ImageDraw
+    import io
+    import datetime
     
+    # बिल के टेक्स्ट को लाइनों में तोड़ें और इमेज साइज तय करें
+    lines = st.session_state.last_bill.split('\n')
+    line_height = 25
+    img_height = max(200, len(lines) * line_height + 40)
+    
+    # सफेद बैकग्राउंड वाली इमेज बनाएं
+    bill_image = Image.new("RGB", (600, img_height), "white")
+    draw = ImageDraw.Draw(bill_image)
+    
+    # इमेज पर ब्लैक कलर से टेक्स्ट लिखें
+    y = 20
+    for line in lines:
+        draw.text((20, y), line, fill="black")
+        y += line_height
+        
+    # स्क्रीन पर बिल की फोटो डिस्प्ले करें
+    st.image(bill_image, caption="Generated Bill Preview", use_container_width=True)
+    
+    # इमेज को डाउनलोड करने के लिए बाइट्स में बदलें
+    buf = io.BytesIO()
+    bill_image.save(buf, format="PNG")
+    byte_im = buf.getvalue()
+    
+    # इमेज का नाम डेट और टाइम के साथ रखें
+    file_name_str = f"Bill_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
+    
+    # बिल को फोटो के रूप में डाउनलोड करने का बटन
     st.download_button(
-        label="📥 Bill ko File me Download Karein",
-        data=st.session_state.last_bill,
+        label="🖼️ Bill ko Photo me Download Karein",
+        data=byte_im,
         file_name=file_name_str,
-        mime="text/plain"
+        mime="image/png"
     )
 
 # ==========================================
