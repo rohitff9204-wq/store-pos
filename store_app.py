@@ -9,7 +9,10 @@ st.set_page_config(
 )
 st.markdown("""
     <style>
-    footer {visibility: hidden;}
+    /* Sabhi tarah ke default footer aur decoration hatane ke liye */
+    footer {visibility: hidden !important;}
+    div[data-testid="stDecoration"] {visibility: hidden !important;}
+    div[data-testid="stStatusWidget"] {visibility: hidden !important;}
     </style>
 """, unsafe_allow_html=True)
 st.markdown("<p style='font-size: 13px; color: gray; margin-bottom: 0px;'>Created by: <a href='https://instagram.com' target='_blank' style='color: #E1306C; text-decoration: none; font-weight: bold;'><img src='https://wikimedia.org' width='13' style='vertical-align: middle; margin-right: 4px;'>@rohitx_844</a></p>", unsafe_allow_html=True)
