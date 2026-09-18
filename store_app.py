@@ -4,15 +4,16 @@ import pandas as pd
 from PIL import Image
 import streamlit as st
 
-# 1. Pehle image file ko load karein (Is line ko st.set_page_config ke upar dalein)
-logo_image = Image.open('store_logo.png')
-
-# 2. Fir page icon mein us variable ko daal dein
+# Page configuration - MUST be before other st commands
 st.set_page_config(
-    page_title='Meridukan', 
-    page_icon=logo_image, 
-    layout='wide'
+    page_title="ROHIT AI",
+    page_icon="🛒",
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
+
+# Your app starts here
+st.title("ROHIT AI")
 st.markdown("<p style='font-size: 13px; color: gray; margin-bottom: 0px;'>Created by: <a href='https://instagram.com' target='_blank' style='color: #E1306C; text-decoration: none; font-weight: bold;'><img src='https://wikimedia.org' width='13' style='vertical-align: middle; margin-right: 4px;'>@rohitx_844</a></p>", unsafe_allow_html=True)
 # Custom PWA Manifest aur Icon Injector for Mobile/Desktop Install Prompt
 st.markdown(
