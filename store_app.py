@@ -221,11 +221,11 @@ if menu == '🧾 Cart & Billing Counter':
           bill_text += f"• {p_name} ({q_sold}) = ₹{t_price}\n"
 
         bill_text += f"--------------------------\n"
-        bill_text += f"🧾 KUL RAKAM (TOTAL) : ₹{grand_total}\n"
-        bill_text += f"💵 MILA (PAID)       : ₹{paid_amount}\n"
+        bill_text += f" KUL RAKAM (TOTAL) : ₹{grand_total}\n"
+        bill_text += f" MILA (PAID)       : ₹{paid_amount}\n"
         
         if balance_amount > 0:
-          bill_text += f"⚠️ BAKI (DUE)        : ₹{balance_amount}\n"
+          bill_text += f" BAKI (DUE)        : ₹{balance_amount}\n"
         
         bill_text += f"==========================\n"
         bill_text += f"   Dhanyawad! Phir Aayiyega 🙏\n"
