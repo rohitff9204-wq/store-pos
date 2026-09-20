@@ -16,17 +16,38 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+
+/* Hide Streamlit footer */
 footer {
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
 }
 
+/* Hide bottom decoration */
+[data-testid="stDecoration"] {
+    display: none !important;
+}
+
+/* Hide Streamlit toolbar */
+[data-testid="stToolbar"] {
+    display: none !important;
+}
+
+/* Hide fullscreen button */
+button[title="View fullscreen"] {
+    display: none !important;
+}
+
+/* Hide element toolbar */
 [data-testid="stElementToolbar"] {
-    display: none;
+    display: none !important;
 }
 
+/* Hide status widget */
 [data-testid="stStatusWidget"] {
-    display: none;
+    display: none !important;
 }
+
 </style>
 """, unsafe_allow_html=True)
 st.markdown("<p style='font-size: 13px; color: gray; margin-bottom: 0px;'>Created by: <a href='https://instagram.com' target='_blank' style='color: #E1306C; text-decoration: none; font-weight: bold;'><img src='https://wikimedia.org' width='13' style='vertical-align: middle; margin-right: 4px;'>@rohitx_844</a></p>", unsafe_allow_html=True)
