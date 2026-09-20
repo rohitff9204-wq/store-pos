@@ -20,10 +20,6 @@ footer {
     visibility: hidden;
 }
 
-[data-testid="stDecoration"] {
-    display: none;
-}
-
 [data-testid="stElementToolbar"] {
     display: none;
 }
