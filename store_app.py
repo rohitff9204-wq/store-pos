@@ -156,6 +156,18 @@ st.markdown(
         margin-left: auto;
         margin-right: auto;
     }
+    /* Keep sidebar visible */
+[data-testid="stSidebar"] {
+    display: block !important;
+    visibility: visible !important;
+    min-width: 280px !important;
+    width: 280px !important;
+}
+
+[data-testid="stSidebarContent"] {
+    visibility: visible !important;
+    display: block !important;
+}
     </style>
 """,
     unsafe_allow_html=True,
