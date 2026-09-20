@@ -156,6 +156,39 @@ st.markdown(
         margin-left: auto;
         margin-right: auto;
     }
+    # --- MOBILE BOTTOM MENU ---
+st.markdown("""
+<style>
+@media (max-width: 768px) {
+
+    /* Hide desktop sidebar on mobile */
+    [data-testid="stSidebar"] {
+        display: none !important;
+    }
+
+    /* Bottom menu */
+    .mobile-menu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: white;
+        border-top: 1px solid #ddd;
+        z-index: 999999;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .mobile-menu-item {
+        font-size: 12px;
+        text-align: center;
+        padding: 5px;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
     /* Keep sidebar visible */
 [data-testid="stSidebar"] {
     display: block !important;
@@ -176,20 +209,80 @@ st.markdown(
 # --- SIDEBAR ---
 st.sidebar.title('🏪 Dukaan Control Panel')
 
-# Sidebar Navigation
+menu_options = [
+    '🧾 Cart & Billing Counter',
+    '📊 Stock & Low Stock Alert',
+    '➕ Naya Saaman Jodein',
+    '✏️ Product Edit / Update',
+    '🗑️ Saaman Hatayein',
+    '📖 Udhaar Khata (Credit Book)',
+    '📈 Sales Report & Analytics',
+    '⚙️ Store & Profile Settings',
+]
+
+# Laptop / Desktop menu
+if not hasattr(st.session_state, "menu"):
+    st.session_state.menu = menu_options[0]
+
 menu = st.sidebar.selectbox(
     'Dukan Menu',
-    [
-        '🧾 Cart & Billing Counter',
-        '📊 Stock & Low Stock Alert',
-        '➕ Naya Saaman Jodein',
-        '✏️ Product Edit / Update',
-        '🗑️ Saaman Hatayein',
-        '📖 Udhaar Khata (Credit Book)',
-        '📈 Sales Report & Analytics',
-        '⚙️ Store & Profile Settings',
-    ],
+    menu_options,
+    index=menu_options.index(st.session_state.menu),
 )
+
+st.session_state.menu = menu
+
+
+# Mobile Bottom Menu
+st.markdown("""
+<style>
+@media (max-width: 768px) {
+
+    [data-testid="stSidebar"] {
+        display: none !important;
+    }
+
+    .mobile-bottom-menu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 65px;
+        background: white;
+        border-top: 1px solid #ddd;
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 4px;
+    }
+
+    .mobile-bottom-menu span {
+        font-size: 11px;
+        text-align: center;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+# Mobile menu buttons
+mobile_menu = st.columns(4)
+
+mobile_items = [
+    ('🧾', 'Billing', menu_options[0]),
+    ('📦', 'Stock', menu_options[1]),
+    ('➕', 'Add', menu_options[2]),
+    ('⚙️', 'Settings', menu_options[7]),
+]
+
+for col, (icon, label, value) in zip(mobile_menu, mobile_items):
+    with col:
+        if st.button(f'{icon}\n{label}', key=f'mobile_{label}'):
+            st.session_state.menu = value
+            st.rerun()
+
+menu = st.session_state.menu
 
 # App Header
 st.title(f'🛒 {store_name}')
