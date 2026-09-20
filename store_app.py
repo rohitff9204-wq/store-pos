@@ -234,6 +234,11 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
+# Mobile navigation state
+if "mobile_menu" not in st.session_state:
+    st.session_state.mobile_menu = "🧾 Cart & Billing Counter"
+
+menu = st.session_state.mobile_menu
 
 st.markdown("""
 <div class="mobile-bottom-bar">
