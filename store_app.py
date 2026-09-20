@@ -12,7 +12,9 @@ st.set_page_config(
     page_title='Meridukan', 
     page_icon=logo_image, 
     layout='wide'
-)st.markdown("""
+)
+
+st.markdown("""
 <style>
 footer {
     visibility: hidden;
