@@ -177,81 +177,25 @@ st.markdown(
 # --- SIDEBAR ---
 st.sidebar.title('🏪 Dukaan Control Panel')
 
-menu_options = [
-    '🧾 Cart & Billing Counter',
-    '📊 Stock & Low Stock Alert',
-    '➕ Naya Saaman Jodein',
-    '✏️ Product Edit / Update',
-    '🗑️ Saaman Hatayein',
-    '📖 Udhaar Khata (Credit Book)',
-    '📈 Sales Report & Analytics',
-    '⚙️ Store & Profile Settings',
-]
-
-# Laptop / Desktop menu
-if not hasattr(st.session_state, "menu"):
-    st.session_state.menu = menu_options[0]
-
+# Sidebar Navigation
 menu = st.sidebar.selectbox(
     'Dukan Menu',
-    menu_options,
-    index=menu_options.index(st.session_state.menu),
+    [
+        '🧾 Cart & Billing Counter',
+        '📊 Stock & Low Stock Alert',
+        '➕ Naya Saaman Jodein',
+        '✏️ Product Edit / Update',
+        '🗑️ Saaman Hatayein',
+        '📖 Udhaar Khata (Credit Book)',
+        '📈 Sales Report & Analytics',
+        '⚙️ Store & Profile Settings',
+    ],
 )
-
-st.session_state.menu = menu
-
-
-# --- MOBILE BOTTOM BAR ---
-st.markdown("""
-<style>
-@media (max-width: 768px) {
-
-    /* Hide sidebar on mobile */
-    [data-testid="stSidebar"] {
-        display: none !important;
-    }
-
-    /* Fixed bottom bar */
-    .mobile-bottom-bar {
-        position: fixed !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        width: 100% !important;
-        height: 65px !important;
-        background: white !important;
-        border-top: 1px solid #ddd !important;
-        z-index: 999999 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-around !important;
-    }
-
-    .mobile-bottom-bar div {
-        text-align: center;
-        font-size: 12px;
-    }
-}
-</style>
-""", unsafe_allow_html=True)
-# Mobile navigation state
-if "mobile_menu" not in st.session_state:
-    st.session_state.mobile_menu = "🧾 Cart & Billing Counter"
-
-menu = st.session_state.mobile_menu
-
-st.markdown("""
-<div class="mobile-bottom-bar">
-    <div>🧾<br>Billing</div>
-    <div>📦<br>Stock</div>
-    <div>➕<br>Add</div>
-    <div>⚙️<br>Settings</div>
-</div>
-""", unsafe_allow_html=True)
 
 # App Header
 st.title(f'🛒 {store_name}')
 st.caption(f'Sanchalak (Owner): {owner_name} | Smart Management & POS System')
+
 
 # ==========================================
 # 1. BILLING & CART COUNTER (MANUAL & FLEXIBLE)
