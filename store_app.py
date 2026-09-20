@@ -201,16 +201,15 @@ menu = st.sidebar.selectbox(
 st.session_state.menu = menu
 
 
-# Mobile Bottom Menu
+# --- MOBILE BOTTOM MENU ---
 st.markdown("""
 <style>
 @media (max-width: 768px) {
-
     [data-testid="stSidebar"] {
         display: none !important;
     }
 
-    .mobile-bottom-menu {
+    .mobile-nav {
         position: fixed;
         bottom: 0;
         left: 0;
@@ -220,37 +219,30 @@ st.markdown("""
         border-top: 1px solid #ddd;
         z-index: 999999;
         display: flex;
-        align-items: center;
         justify-content: space-around;
-        padding: 4px;
-    }
-
-    .mobile-bottom-menu span {
-        font-size: 11px;
-        text-align: center;
+        align-items: center;
     }
 }
 </style>
 """, unsafe_allow_html=True)
 
-
-# Mobile menu buttons
-mobile_menu = st.columns(4)
+# Mobile navigation buttons
+mobile_cols = st.columns(4)
 
 mobile_items = [
-    ('🧾', 'Billing', menu_options[0]),
-    ('📦', 'Stock', menu_options[1]),
-    ('➕', 'Add', menu_options[2]),
-    ('⚙️', 'Settings', menu_options[7]),
+    ("🧾", "Billing", "🧾 Cart & Billing Counter"),
+    ("📦", "Stock", "📊 Stock & Low Stock Alert"),
+    ("➕", "Add", "➕ Naya Saaman Jodein"),
+    ("⚙️", "Settings", "⚙️ Store & Profile Settings"),
 ]
 
-for col, (icon, label, value) in zip(mobile_menu, mobile_items):
+for col, (icon, label, value) in zip(mobile_cols, mobile_items):
     with col:
-        if st.button(f'{icon}\n{label}', key=f'mobile_{label}'):
-            st.session_state.menu = value
-            st.rerun()
+        if st.button(f"{icon}\n{label}", key=f"mobile_{label}"):
+            st.session_state.mobile_menu = value
 
-menu = st.session_state.menu
+if st.session_state.get("mobile_menu"):
+    menu = st.session_state.mobile_menu
 
 # App Header
 st.title(f'🛒 {store_name}')
