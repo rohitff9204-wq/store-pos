@@ -12,7 +12,25 @@ st.set_page_config(
     page_title='Meridukan', 
     page_icon=logo_image, 
     layout='wide'
-)
+)st.markdown("""
+<style>
+footer {
+    visibility: hidden;
+}
+
+[data-testid="stDecoration"] {
+    display: none;
+}
+
+[data-testid="stElementToolbar"] {
+    display: none;
+}
+
+[data-testid="stStatusWidget"] {
+    display: none;
+}
+</style>
+""", unsafe_allow_html=True)
 st.markdown("<p style='font-size: 13px; color: gray; margin-bottom: 0px;'>Created by: <a href='https://instagram.com' target='_blank' style='color: #E1306C; text-decoration: none; font-weight: bold;'><img src='https://wikimedia.org' width='13' style='vertical-align: middle; margin-right: 4px;'>@rohitx_844</a></p>", unsafe_allow_html=True)
 # Custom PWA Manifest aur Icon Injector for Mobile/Desktop Install Prompt
 st.markdown(
