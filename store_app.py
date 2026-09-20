@@ -156,29 +156,7 @@ st.markdown(
         margin-left: auto;
         margin-right: auto;
     }
-    # --- MOBILE BOTTOM MENU ---
-st.markdown("""
-<style>
-@media (max-width: 768px) {
-
-    [data-testid="stSidebar"] {
-        display: none !important;
-    }
-
-    .mobile-bottom-menu {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 65px;
-        background: white;
-        border-top: 1px solid #ddd;
-        z-index: 999999;
-    }
-
-}
-</style>
-""", unsafe_allow_html=True)
+    
     /* Keep sidebar visible */
 [data-testid="stSidebar"] {
     display: block !important;
