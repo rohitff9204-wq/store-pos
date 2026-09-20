@@ -201,48 +201,48 @@ menu = st.sidebar.selectbox(
 st.session_state.menu = menu
 
 
-# --- MOBILE BOTTOM MENU ---
+# --- MOBILE BOTTOM BAR ---
 st.markdown("""
 <style>
 @media (max-width: 768px) {
+
+    /* Hide sidebar on mobile */
     [data-testid="stSidebar"] {
         display: none !important;
     }
 
-    .mobile-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 65px;
-        background: white;
-        border-top: 1px solid #ddd;
-        z-index: 999999;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+    /* Fixed bottom bar */
+    .mobile-bottom-bar {
+        position: fixed !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 65px !important;
+        background: white !important;
+        border-top: 1px solid #ddd !important;
+        z-index: 999999 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+    }
+
+    .mobile-bottom-bar div {
+        text-align: center;
+        font-size: 12px;
     }
 }
 </style>
 """, unsafe_allow_html=True)
 
-# Mobile navigation buttons
-mobile_cols = st.columns(4)
-
-mobile_items = [
-    ("🧾", "Billing", "🧾 Cart & Billing Counter"),
-    ("📦", "Stock", "📊 Stock & Low Stock Alert"),
-    ("➕", "Add", "➕ Naya Saaman Jodein"),
-    ("⚙️", "Settings", "⚙️ Store & Profile Settings"),
-]
-
-for col, (icon, label, value) in zip(mobile_cols, mobile_items):
-    with col:
-        if st.button(f"{icon}\n{label}", key=f"mobile_{label}"):
-            st.session_state.mobile_menu = value
-
-if st.session_state.get("mobile_menu"):
-    menu = st.session_state.mobile_menu
+st.markdown("""
+<div class="mobile-bottom-bar">
+    <div>🧾<br>Billing</div>
+    <div>📦<br>Stock</div>
+    <div>➕<br>Add</div>
+    <div>⚙️<br>Settings</div>
+</div>
+""", unsafe_allow_html=True)
 
 # App Header
 st.title(f'🛒 {store_name}')
