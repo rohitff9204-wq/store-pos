@@ -161,31 +161,21 @@ st.markdown("""
 <style>
 @media (max-width: 768px) {
 
-    /* Hide desktop sidebar on mobile */
     [data-testid="stSidebar"] {
         display: none !important;
     }
 
-    /* Bottom menu */
-    .mobile-menu {
+    .mobile-bottom-menu {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        height: 60px;
+        height: 65px;
         background: white;
         border-top: 1px solid #ddd;
         z-index: 999999;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
     }
 
-    .mobile-menu-item {
-        font-size: 12px;
-        text-align: center;
-        padding: 5px;
-    }
 }
 </style>
 """, unsafe_allow_html=True)
